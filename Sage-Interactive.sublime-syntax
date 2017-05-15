@@ -1,0 +1,35 @@
+%YAML 1.2
+---
+name: Sage-Interactive
+fileTypes: []
+scope: source.interactive.sage
+
+contexts:
+
+  main:
+    - include: prompt
+    - include: output
+    - include: error
+
+  prompt:
+  - match: '^\s*(sage:|\.\.\.\.:|\.\.\.)'
+    scope: punctuation.prompt.interactive.sage
+    push: Packages/Python/Python.sublime-syntax
+    with_prototype:
+      - match: '$'
+        pop: true
+
+  # I don't even know what this is...
+  output:
+  - match: '^\s*(Definition|Call def):'
+    scope: entity.other.interactive.output.sage
+    push: Packages/Python/Python.sublime-syntax
+    with_prototype:
+      - match: '$'
+        pop: true
+
+  error:
+  - match: '^(([A-Za-z_][A-Za-z_0-9]+)?Error:).*'
+    scope: entity.name.tag.error.sage
+  - match: '^(([A-Za-z_][A-Za-z_0-9]+)?Error)\s+Traceback \(most recent call last\)$'
+    scope: entity.name.tag.error.sage

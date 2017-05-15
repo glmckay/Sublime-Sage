@@ -3,6 +3,9 @@
     "selector": "source.python",
     "shell": true,
     "windows": {
-        "cmd": ["bash", "-c", "echo \"load('$file_name')\" | sage"]
+        "cmd": ["bash", "-c", "echo \"load('$file_name')\" | sage -q"]
+    },
+    "osx": {
+        "cmd": ["source ~/.bashrc; echo \"load('$file')\" | sage -q"],
     }
 }
